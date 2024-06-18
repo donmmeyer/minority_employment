@@ -5,7 +5,7 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 import plotly.express as px
 
-mydata = "https://raw.githubusercontent.com/plotly/datasets/master/Rhona_data.csv"
+mydata = "Rhona_data.csv"
 df = pd.read_csv(mydata,index_col=False)
 # Calculate mean scores by ethnicity and rank the top five attributes
 df.drop(['id', 'Age Category'], axis=1, inplace=True)
