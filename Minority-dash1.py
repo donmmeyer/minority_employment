@@ -13,54 +13,45 @@ df.drop(['id', 'Age Category'], axis=1, inplace=True)
 app = dash.Dash(__name__)
 server = app.server
 
-# External stylesheet for Google Fonts
-external_stylesheets = [
-    {
-        'href': 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap',
-        'rel': 'stylesheet'
-    }
-]
-
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-
-app.layout = html.Div(style={'fontFamily': 'Roboto, sans-serif', 'marginTop': '20px'}, children=[
-    html.H1("Top Factors that Minorities Look for in Employment (data simulated)", style={'textAlign': 'center', 'color': '#034f84'}),
+app.layout = html.Div(style={'marginTop': '20px'}, children=[
+    html.H1("Top Factors that Minorities Look for in Employment (data simulated)",
+            style={'textAlign': 'center', 'color': '#034f84', 'fontFamily': 'Arial, sans-serif'}),
     html.Br(),
     html.Br(),
     html.Div(style={'display': 'flex', 'justifyContent': 'space-around'}, children=[
         html.Div([
-            html.Label("Select Ethnicity:", style={'color': '#034f84'}),
+            html.Label("Select Ethnicity:", style={'color': '#034f84', 'fontFamily': 'Arial, sans-serif'}),
             dcc.Dropdown(
                 id='ethnicity-dropdown',
                 options=[{'label': eth, 'value': eth} for eth in df['Ethnicity'].unique()] + [{'label': 'All', 'value': 'All'}],
                 value='All',
-                style={'width': '300px'}  # Widen the dropdown
+                style={'width': '300px'}
             ),
         ]),
         html.Div([
-            html.Label("Select Gender:", style={'color': '#034f84'}),
+            html.Label("Select Gender:", style={'color': '#034f84', 'fontFamily': 'Arial, sans-serif'}),
             dcc.Dropdown(
                 id='gender-dropdown',
                 options=[{'label': gender, 'value': gender} for gender in df['Gender'].unique()] + [{'label': 'All', 'value': 'All'}],
                 value='All',
-                style={'width': '200px'}  # Widen the dropdown
+                style={'width': '200px'}
             ),
         ]),
     ]),
     html.Br(),
     html.Div(style={'width': '90%', 'margin': '0 auto'}, children=[
-        html.Label("Select Age Range:", style={'color': '#034f84'}),
+        html.Label("Select Age Range:", style={'color': '#034f84', 'fontFamily': 'Arial, sans-serif'}),
         html.Div([
             dcc.RangeSlider(
                 id='age-slider',
                 min=df['Age'].min(),
                 max=df['Age'].max(),
                 step=1,
-                marks={i: str(i) for i in range(df['Age'].min(), df['Age'].max()+1, 5)},
+                marks={i: str(i) for i in range(df['Age'].min(), df['Age'].max() + 1, 5)},
                 value=[df['Age'].min(), df['Age'].max()]
             ),
-        ], style={'width': '80%'}),  # Make the range slider more narrow
-        html.Div(id='age-range-output', style={'marginTop': '10px', 'color': '#034f84'})
+        ], style={'width': '80%'}),
+        html.Div(id='age-range-output', style={'marginTop': '10px', 'color': '#034f84', 'fontFamily': 'Arial, sans-serif'})
     ]),
     html.Br(),
     html.Br(),
