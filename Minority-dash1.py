@@ -11,7 +11,7 @@ df = pd.read_csv(mydata,index_col=False)
 df.drop(['id', 'Age Category'], axis=1, inplace=True)
 
 app = dash.Dash(__name__)
-server=app.server
+
 
 # External stylesheet for Google Fonts
 external_stylesheets = [
